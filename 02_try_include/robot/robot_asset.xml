@@ -1,0 +1,35 @@
+<asset>
+  <mesh name="trunk" file="trunk.STL" />
+  <mesh name="d435" file="d435.stl" />
+  <mesh name="FL_hip" file="FL_hip.STL" />
+  <mesh name="FL_thigh" file="FL_thigh.STL" />
+  <mesh name="FL_calf" file="FL_calf.STL" />
+  <mesh name="FR_hip" file="FR_hip.STL" />
+  <mesh name="FR_thigh" file="FR_thigh.STL" />
+  <mesh name="FR_calf" file="FR_calf.STL" />
+  <mesh name="RR_hip" file="RR_hip.STL" />
+  <mesh name="RR_thigh" file="RR_thigh.STL" />
+  <mesh name="RR_calf" file="RR_calf.STL" />
+  <mesh name="RL_hip" file="RL_hip.STL" />
+  <mesh name="RL_thigh" file="RL_thigh.STL" />
+  <mesh name="RL_calf" file="RL_calf.STL" />
+  <material name="trunk_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="imu_link_mat" rgba="0.80000392 0.00000392 0.00000392 1" specular="0" />
+  <material name="d435_link_mat" rgba="0.15 0.15 0.15 1" specular="0" />
+  <material name="FL_hip_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="FL_thigh_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="FL_calf_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="FL_foot_mat" rgba="0.11765098 0.14902353 0.20000392 1" specular="0" />
+  <material name="FR_hip_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="FR_thigh_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="FR_calf_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="FR_foot_mat" rgba="0.11765098 0.14902353 0.20000392 1" specular="0" />
+  <material name="RR_hip_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="RR_thigh_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="RR_calf_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="RR_foot_mat" rgba="0.11765098 0.14902353 0.20000392 1" specular="0" />
+  <material name="RL_hip_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="RL_thigh_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="RL_calf_mat" rgba="0.75294 0.75294 0.75294 1" specular="0" />
+  <material name="RL_foot_mat" rgba="0.11765098 0.14902353 0.20000392 1" specular="0" />
+</asset>

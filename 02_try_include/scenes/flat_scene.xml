@@ -1,0 +1,17 @@
+<mujoco model="flat_scene">
+<compiler angle="radian" meshdir="../robot/meshes/" inertiafromgeom="auto" inertiagrouprange="3 3" />
+<asset>
+    <include file="../robot/robot_asset.xml"/>
+</asset>
+
+<worldbody>
+    <geom type="plane" size="10 10 0.1" rgba="0.9 0.9 0.9 1"/>
+    <light pos="0 0 3"/>
+    <include file="../robot/robot_worldbody.xml"/>
+</worldbody>
+
+<actuator>
+    <include file="../robot/robot_actuator.xml"/>
+</actuator>
+
+</mujoco>
