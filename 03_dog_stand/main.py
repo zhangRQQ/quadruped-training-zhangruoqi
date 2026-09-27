@@ -14,13 +14,13 @@ VIEWER_DT = 0.01      # 画面刷新间隔 100fps
 
 # 控制参数
 KP = 20
-KD = 5
+KD = 1
 TAU_MAX = 33.5
 JOINT_Q_START = 7
 JOINT_DQ_START = 6
 NUM_JOINTS = 12
 
-INTERP_STEP = 0.002   # 插值步长，放慢站立速度，更稳
+INTERP_STEP = 0.0015   # 插值步长，放慢站立速度，更稳
 
 # 站立目标角度（输出侧，弧度，按关节顺序排列）
 # 示例：4条腿，每条腿3个关节（侧摆/髋/膝），共12个
@@ -47,6 +47,26 @@ class Simulator:
         self.state = STATE_DAMPING          # 默认启动为阻尼模式
         self.current_target_q = np.zeros(NUM_JOINTS)  # 预初始化，后续插值用
 
+        # ========== 调试打印 ==========
+        # 1. 关节地址（已验证正确，可注释掉节省输出）
+        # print("=== 关节名 + qpos/qvel起始地址 ===")
+        # for i in range(self.model.njnt):
+        #     j = self.model.joint(i)
+        #     print(f"关节{i}: {j.name}, qpos起始: {j.qposadr[0]}, qvel起始: {j.dofadr[0]}")
+
+        # 2. 执行器列表：只打印名称、对应关节索引
+        print("\n=== 执行器列表 ===")
+        for i in range(self.model.nu):
+            act = self.model.actuator(i)
+            joint_idx = act.trnid[0]
+            print(f"执行器{i}: {act.name}, 对应关节索引: {joint_idx}")
+        print(f"执行器总数: {self.model.nu}")
+
+        # 3. ctrl数组总长度
+        print(f"\nctrl数组总长度: {self.model.nu}")
+
+
+
     def set_timestep(self, timestep):
         self.model.opt.timestep = timestep
 
@@ -65,11 +85,15 @@ class Simulator:
     def _compute_damping_torque(self):
         dq = self.data.qvel[JOINT_DQ_START : JOINT_DQ_START + NUM_JOINTS]
 
-        tau = -KD * dq
+        tau = KD * (0 - dq)
         tau = np.clip(tau, -TAU_MAX, TAU_MAX)
 
         return tau
 
+    def _smoothly_stand(self):
+        diff = STAND_Q - self.current_target_q
+        step = np.clip(diff, -INTERP_STEP, INTERP_STEP)
+        self.current_target_q += step
 
     def run(self):
         def key_callback(key):
@@ -87,7 +111,8 @@ class Simulator:
                 step_start = time.time()
 
                 if self.state == STATE_STANDING:
-                    tau = self._compute_mit_torque(STAND_Q)
+                    self._smoothly_stand()
+                    tau = self._compute_mit_torque(self.current_target_q)
                 else:
                     tau = self._compute_damping_torque()
                 
