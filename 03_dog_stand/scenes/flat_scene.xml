@@ -1,0 +1,12 @@
+<mujoco model="flat_scene">
+
+<include file="../robot/black_description.xml"/>
+
+<compiler angle="radian" meshdir="../robot/meshes/" />
+
+<worldbody>
+    <geom type="plane" size="10 10 0.1" rgba="0.9 0.9 0.9 1"/>
+    <light pos="0 0 3"/>
+</worldbody>
+
+</mujoco>
